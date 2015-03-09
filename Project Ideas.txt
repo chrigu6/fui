@@ -1,0 +1,8 @@
+Speech / Gesture: 
+
+Speech: “Show me all books about dinosaurs”
+
+Gesture: swipe trough pages / handle an actual book (could be blank and show the text projected on it). Go to a certain page and say, search for t-rex -> found words get highlighted on the page. 
+
+Combined: Look up additional information about this (point to word)
+Select text with gesture and say things like. copy this text to a file. Save the text as a seperate file. 
