@@ -28,7 +28,8 @@ namespace Virtual_Library
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach(Books book in library)
+            List<Books> results = Search("mathematics");
+            foreach (Books book in results)
             {
                 System.Diagnostics.Process.Start(book.getPath());
             }
@@ -37,6 +38,23 @@ namespace Virtual_Library
         private void textBox1_MouseClick(object sender, EventArgs e)
         {
             textBox1.Text = "";
+        }
+
+        private List<Books> Search(String keyword)
+        {
+            List<Books> result = new List<Books>();
+            foreach (Books book in library)
+            {
+                foreach (String tag in book.getTags())
+                {
+                    if (tag == keyword)
+                    {
+                        result.Add(book);
+                        break;
+                    }
+                }
+            }
+            return result;
         }
 
         private void InitializeLibrary()
