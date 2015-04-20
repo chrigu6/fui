@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 public class Books
 {
@@ -7,13 +8,15 @@ public class Books
     private String author;
     private int year;
     private String path;
+    private Image thumbnail;
     private List<String> tags = new List<string>();
 
-    public Books(String name, String author, int year, String path)
+    public Books(String name, String author, int year, String pathToFile, String path)
     {
         this.name = name;
         this.author = author;
         this.year = year;
+        this.thumbnail = Image.FromFile(pathToFile);
         this.path = path;
     }
 
@@ -55,6 +58,16 @@ public class Books
     public String getPath()
     {
         return this.path;
+    }
+
+    public void setThumbnail(String path)
+    {
+        this.thumbnail = Image.FromFile(path);
+    }
+
+    public Image getThumbnail()
+    {
+        return this.thumbnail;
     }
 
     public void setTag(String tag)
