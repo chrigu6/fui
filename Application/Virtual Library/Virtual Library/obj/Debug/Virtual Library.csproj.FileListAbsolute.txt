@@ -7,3 +7,8 @@
 \\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.GenerateResource.Cache
 \\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.exe
 \\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.pdb
+\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\bin\Debug\Interop.AcroPDFLib.dll
+\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\bin\Debug\AxInterop.AcroPDFLib.dll
+\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\Interop.AcroPDFLib.dll
+\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\AxInterop.AcroPDFLib.dll
+\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.ResolveComReference.cache

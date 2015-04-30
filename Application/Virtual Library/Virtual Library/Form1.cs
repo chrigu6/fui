@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows;
 
 namespace Virtual_Library
 {
@@ -74,7 +73,7 @@ namespace Virtual_Library
             }
             else
             {
-                pb.Location = new Point(tn[tn.Count() - 1].Right + 5, textBox1.Bottom + 5);
+                pb.Location = new Point(tn[tn.Count() - 1].Right + 8, textBox1.Bottom + 5);
             }
             pb.Size = new Size(120, 200);
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -82,15 +81,50 @@ namespace Virtual_Library
             pb.Visible = true;
             pb.Cursor = Cursors.Hand;
             pb.Click += new EventHandler(thumbnailClick);
+            pb.MouseEnter += new EventHandler(highlightBook);
+            pb.MouseLeave += new EventHandler(resizeBook);
             this.Controls.Add(pb);
             tn.Add(pb);
+        }
+
+        private void highlightBook(object sender, EventArgs e)
+        {
+            var book = (PictureBox)sender;
+            book.Location = new Point(book.Location.X - 3, book.Location.Y);
+            book.BorderStyle = BorderStyle.FixedSingle;
+            book.Size = new Size(126, 206);
+        }
+
+        private void resizeBook(object sender, EventArgs e)
+        {
+            var book = (PictureBox)sender;
+            book.Location = new Point(book.Location.X + 3, book.Location.Y);
+            book.BorderStyle = BorderStyle.None;
+            book.Size = new Size(120, 200);
         }
 
         private void thumbnailClick(object sender, EventArgs e)
         {
             var clickedPicture = (PictureBox)sender;
             var book = searchBook(clickedPicture.Name);
-            System.Diagnostics.Process.Start(book.getPath());
+            InitializeAdobe(book.getPath());
+        }
+
+        private void InitializeAdobe(string filePath)
+        {
+            try
+            {
+                this.axAcroPDF1.LoadFile(filePath);
+                this.axAcroPDF1.src = filePath;
+                this.axAcroPDF1.setShowToolbar(true);
+                this.axAcroPDF1.setView("FitH");
+                this.axAcroPDF1.setLayoutMode("SinglePage");
+                this.axAcroPDF1.Show();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private Books searchBook(String name)
@@ -105,11 +139,13 @@ namespace Virtual_Library
             return null;
         }
 
+        private const string defaultText = "Type query";
+
         private void textBox1_MouseClick(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Type query")
+            if (textBox1.Text == defaultText)
             {
-                textBox1.Text = "";
+                textBox1.Text = string.Empty;
             }
         }
 
