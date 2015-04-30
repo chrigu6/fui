@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows;
 
 namespace Virtual_Library
 {
@@ -17,6 +18,8 @@ namespace Virtual_Library
         List<Books> library = new List<Books>();
         List<PictureBox> tn = new List<PictureBox>();
         Label alert = new Label();
+
+        
 
         public Form1()
         {
@@ -52,10 +55,20 @@ namespace Virtual_Library
             }
         }
 
+        private void button1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
+
         private void addPictureBox(Books book)
         {
             PictureBox pb = new PictureBox();
-            pb.Name = "Thumbnail_" + book.getName();
+            pb.Name = book.getName();
             if(tn.Count < 1) {
                 pb.Location = new Point(textBox1.Left, textBox1.Bottom + 5);
             }
@@ -67,13 +80,37 @@ namespace Virtual_Library
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.Image = book.getThumbnail();
             pb.Visible = true;
+            pb.Cursor = Cursors.Hand;
+            pb.Click += new EventHandler(thumbnailClick);
             this.Controls.Add(pb);
             tn.Add(pb);
         }
 
+        private void thumbnailClick(object sender, EventArgs e)
+        {
+            var clickedPicture = (PictureBox)sender;
+            var book = searchBook(clickedPicture.Name);
+            System.Diagnostics.Process.Start(book.getPath());
+        }
+
+        private Books searchBook(String name)
+        {
+            foreach (Books book in library)
+            {
+                if (book.getName() == name)
+                {
+                    return book;
+                }
+            }
+            return null;
+        }
+
         private void textBox1_MouseClick(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            if (textBox1.Text == "Type query")
+            {
+                textBox1.Text = "";
+            }
         }
 
         private List<Books> Search(String keyword)
