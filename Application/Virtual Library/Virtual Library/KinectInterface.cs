@@ -174,18 +174,21 @@ namespace KinectMouse
                 this.gaussFactor += num;
             }
             this.Kinect = KinectSensor.KinectSensors.FirstOrDefault<KinectSensor>(s => s.Status == KinectStatus.Connected);
-            TransformSmoothParameters parameters = new TransformSmoothParameters
+            if(this.Kinect != null)
             {
-                Smoothing = 0.5f,
-                Correction = 0.5f,
-                Prediction = 0.5f,
-                JitterRadius = 0.05f,
-                MaxDeviationRadius = 0.04f
-            };
-            this.Kinect.SkeletonStream.Enable();
-            this.SkeletonData = new Skeleton[this.Kinect.SkeletonStream.FrameSkeletonArrayLength];
-            this.Kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(this.kinect_SkeletonFrameReady);
-            this.Kinect.Start();
+                TransformSmoothParameters parameters = new TransformSmoothParameters
+                {
+                    Smoothing = 0.5f,
+                    Correction = 0.5f,
+                    Prediction = 0.5f,
+                    JitterRadius = 0.05f,
+                    MaxDeviationRadius = 0.04f
+                };
+                this.Kinect.SkeletonStream.Enable();
+                this.SkeletonData = new Skeleton[this.Kinect.SkeletonStream.FrameSkeletonArrayLength];
+                this.Kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(this.kinect_SkeletonFrameReady);
+                this.Kinect.Start();
+            }
         }
 
         // Properties
