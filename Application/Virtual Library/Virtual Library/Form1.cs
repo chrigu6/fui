@@ -170,24 +170,24 @@ namespace Virtual_Library
         {
             Books book1 = new Books("A History of Mathematics", 
                 "Florian Cajori", 2010, 
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\historymath.jpg", 
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\A History of Mathematics.pdf"
+                @"..\..\books\historymath.jpg",
+                @"..\..\books\A History of Mathematics.pdf"
             );
             book1.setTag("history");
             book1.setTag("mathematics");
             library.Add(book1);
             Books book2 = new Books("A Short Account of the History of Mathematics", 
                 "W. W. Rouse Ball", 2010,
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\accountmath.jpg",
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\A Short Account of the History of Mathematics.pdf"
+                @"..\..\books\accountmath.jpg",
+                @"..\..\books\A Short Account of the History of Mathematics.pdf"
             );
             book2.setTag("history");
             book2.setTag("mathematics");
             library.Add(book2);
             Books book3 = new Books("First Six Books of the Elements of Euclid", 
-                "John Casey", 2007, 
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\euclid.jpg",
-                @"\\psf\Dropbox\Unibe\3. Semester\FUI\Project\Application\Virtual Library\Virtual Library\books\First Six Books of the Elements of Euclid.pdf"
+                "John Casey", 2007,
+                @"..\..\books\euclid.jpg",
+                @"..\..\books\First Six Books of the Elements of Euclid.pdf"
             );
             book3.setTag("elements");
             book3.setTag("mathematics");
