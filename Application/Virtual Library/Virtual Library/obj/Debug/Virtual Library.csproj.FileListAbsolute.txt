@@ -26,3 +26,17 @@ C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\ob
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Form1.resources
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Properties.Resources.resources
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.GenerateResource.Cache
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\bin\Debug\Virtual Library.exe.config
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.ResolveComReference.cache
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.exe
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.pdb
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\bin\Debug\Virtual Library.exe
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\bin\Debug\Virtual Library.pdb
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csprojResolveAssemblyReference.cache
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Form1.resources
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Properties.Resources.resources
+C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.GenerateResource.Cache

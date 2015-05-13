@@ -1,0 +1,58 @@
+﻿<grammar version="1.0" xml:lang="en-US" root="rootRule" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="rootRule">
+    <one-of>
+      <item>
+        <tag>CLICK</tag>
+        <one-of>
+          <item> click </item>
+          <item> clic </item>
+          <item> take </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>SEARCH</tag>
+        <one-of>
+          <item> search </item>
+          <item> find </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>OPEN</tag>
+        <one-of>
+          <item> open </item>
+          <item> read </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>CLOSE</tag>
+        <one-of>
+          <item> close </item>
+          <item> quit </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>SELECTION</tag>
+        <one-of>
+          <item> this </item>
+          <item> document </item>
+          <item> file </item>
+          <item> pdf </item>
+          <item> book </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>EXIT_COMMANDS</tag>
+        <one-of>
+          <item>shut down</item>
+          <item>close the application</item>
+          <item>exit the application</item>
+          <item>quit the application</item>
+          <item>close the programm</item>
+          <item>exit the programm</item>
+          <item>quit the programm</item>
+          <item>alt eff four</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

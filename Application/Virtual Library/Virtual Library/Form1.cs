@@ -194,5 +194,10 @@ namespace Virtual_Library
             book3.setTag("euclid");
             library.Add(book3);
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
+using Microsoft.Speech.AudioFormat;
+using Microsoft.Speech.Recognition;
+using System.IO;
+using Virtual_Library;
+using System.Runtime.InteropServices;
+
 
 namespace KinectMouse
 {
@@ -22,6 +29,12 @@ namespace KinectMouse
         private List<Point> mousePositionHistory = new List<Point>();
         private int oldX = 15;
         private int oldY = -15;
+
+        // Speech recognition
+        private SpeechRecognitionEngine spRecEng;
+        //confidence treshold
+        private const double ConfidenceThreshold = 0.8;
+        public Form1 MyForm;
 
         private KinectInterface()
         {
@@ -165,6 +178,152 @@ namespace KinectMouse
             return point;
         }
 
+        // Code for mouse click
+        public class MouseOperations
+        {
+            [Flags]
+            public enum MouseEventFlags
+            {
+                LeftDown = 0x00000002,
+                LeftUp = 0x00000004,
+                MiddleDown = 0x00000020,
+                MiddleUp = 0x00000040,
+                Move = 0x00000001,
+                Absolute = 0x00008000,
+                RightDown = 0x00000008,
+                RightUp = 0x00000010
+            }
+
+            [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            private static extern bool SetCursorPos(int X, int Y);
+
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            private static extern bool GetCursorPos(out MousePoint lpMousePoint);
+
+            [DllImport("user32.dll")]
+            private static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
+
+            public static void SetCursorPosition(int X, int Y)
+            {
+                SetCursorPos(X, Y);
+            }
+
+            public static MousePoint GetCursorPosition()
+            {
+                MousePoint currentMousePoint;
+                var gotPoint = GetCursorPos(out currentMousePoint);
+                if (!gotPoint) { currentMousePoint = new MousePoint(0, 0); }
+                return currentMousePoint;
+            }
+
+            public static void MouseEvent(MouseEventFlags value)
+            {
+                MousePoint position = GetCursorPosition();
+
+                mouse_event
+                    ((int)value,
+                     position.X,
+                     position.Y,
+                     0,
+                     0)
+                    ;
+            }
+
+            [StructLayout(LayoutKind.Sequential)]
+            public struct MousePoint
+            {
+                public int X;
+                public int Y;
+
+                public MousePoint(int x, int y)
+                {
+                    X = x;
+                    Y = x;
+                }
+
+            }
+
+        }
+
+        //Speech Recognizer
+        private static RecognizerInfo GetKinectRecognizer()
+        {
+            foreach (RecognizerInfo recgonizer in SpeechRecognitionEngine.InstalledRecognizers())
+            {
+                string value;
+                recgonizer.AdditionalInfo.TryGetValue("Kinect", out value);
+                if ("True".Equals(value, StringComparison.OrdinalIgnoreCase) && "en-US".Equals(recgonizer.Culture.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return recgonizer;
+                }
+            }
+            return null;
+        }
+
+
+        void spRecEng_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("I did not understand. Could you repeat, please?");
+            //MyForm.textBox2.Text = "What did you say? You said: ???";
+            //this.semanticRep.Text = "What did you say?";
+            //this.spoken.Text = "???";
+        }
+        void spRecEng_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if (e.Result.Confidence < ConfidenceThreshold)
+            {
+                //engine is not confident about result => ignore it
+                return;
+            }
+            string semantic = "";
+            switch (e.Result.Semantics.Value.ToString())
+            {
+                case "CLICK":
+                    semantic = "Click" + e.Result.Text;
+                    System.Windows.Forms.MessageBox.Show("You want to click");
+                //MouseOperations.SetCursorPosition();
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    break;
+
+                case "SEARCH":
+                    semantic = "You want to search something, you said: " + e.Result.Text;
+                    System.Windows.Forms.MessageBox.Show(semantic);
+                    //MyForm.textBox2.Clear = "search";
+
+                    break;
+                case "OPEN":
+                    semantic = "You want to open a document, you said: " + e.Result.Text;
+                    System.Windows.Forms.MessageBox.Show(semantic);
+
+                    break;
+                case "CLOSE":
+                    semantic = "You want to close a document, you said: " + e.Result.Text;
+                    System.Windows.Forms.MessageBox.Show(semantic);
+
+                    break;
+                case "SELECTION":
+                    semantic = "You talk about a document, you said: " + e.Result.Text;
+                    System.Windows.Forms.MessageBox.Show(semantic);
+
+                    break;
+                case "EXIT_COMMANDS":
+                    MyForm.Close();
+                    break;
+                default:
+                    semantic = "I am confident that I heard something, but I don't know what";
+                    System.Windows.Forms.MessageBox.Show(semantic);
+                    break;
+            }
+
+
+            // the spoken word is stored in spoken.Text variable
+            string spokenText = e.Result.Text;
+        }
+
+
         public void StartKinectST()
         {
             int[] gaussFilter = this.gaussFilter;
@@ -188,9 +347,34 @@ namespace KinectMouse
                 this.SkeletonData = new Skeleton[this.Kinect.SkeletonStream.FrameSkeletonArrayLength];
                 this.Kinect.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(this.kinect_SkeletonFrameReady);
                 this.Kinect.Start();
+
+
+                // starting the speech recognizer
+                RecognizerInfo ri = GetKinectRecognizer();
+                if (ri != null)
+                {
+                    this.spRecEng = new SpeechRecognitionEngine(ri.Id);
+                    //MemoryStream stream = new MemoryStream();
+                    //XmlDocument xDocument = new XmlDocument();
+                    //xDocument.Save(stream);
+
+                    using (var memoryStream = new MemoryStream(Encoding.ASCII.GetBytes(Virtual_Library.Properties.Resources.SpeechGrammar)))
+                    {
+                        var g = new Grammar(memoryStream);
+                        spRecEng.LoadGrammar(g);
+                    }
+                    spRecEng.SpeechRecognized += spRecEng_SpeechRecognized;
+                    spRecEng.SpeechRecognitionRejected += spRecEng_SpeechRecognitionRejected;
+
+                    spRecEng.SetInputToAudioStream(Kinect.AudioSource.Start(), new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
+                    spRecEng.RecognizeAsync(RecognizeMode.Multiple);
+                }
+                else
+                {
+                    //no speech recognizer
+                }
             }
         }
-
         // Properties
         public Skeleton[] SkeletonData { get; set; }
 
