@@ -90,11 +90,11 @@ namespace KinectMouse
                     nullable4 = joint;
                     rightHand = true;
                 }
-                if ((nullable2.HasValue && (nullable2.Value.TrackingState == JointTrackingState.Tracked)) && !(nullable4.HasValue && (nullable4.Value.Position.Y >= nullable2.Value.Position.Y)))
+                /*if ((nullable2.HasValue && (nullable2.Value.TrackingState == JointTrackingState.Tracked)) && !(nullable4.HasValue && (nullable4.Value.Position.Y >= nullable2.Value.Position.Y)))
                 {
                     nullable4 = nullable2;
                     rightHand = false;
-                }
+                }*/
                 if (nullable4.HasValue && nullable3.HasValue)
                 {
                     int num;
