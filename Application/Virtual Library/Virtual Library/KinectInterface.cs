@@ -29,6 +29,11 @@ namespace KinectMouse
         private List<Point> mousePositionHistory = new List<Point>();
         private int oldX = 15;
         private int oldY = -15;
+        private float[] leftHandX = new float[30];
+        private float[] leftHandY = new float[30];
+        private int leftHandTracked = 0;
+        private int leftHandUnTracked = 0;
+        private int gestureReset = 40;
 
         // Speech recognition
         private SpeechRecognitionEngine spRecEng;
@@ -80,26 +85,24 @@ namespace KinectMouse
                 {
                     frame.CopySkeletonDataTo(this.SkeletonData);
                 }
-                bool rightHand = true;
-                Joint? joint = this.GetJoint(JointType.HandRight);
-                Joint? nullable2 = this.GetJoint(JointType.HandLeft);
-                Joint? nullable3 = this.GetJoint(JointType.ShoulderCenter);
-                Joint? nullable4 = null;
-                if (joint.HasValue && (joint.Value.TrackingState == JointTrackingState.Tracked))
-                {
-                    nullable4 = joint;
-                    rightHand = true;
-                }
-                /*if ((nullable2.HasValue && (nullable2.Value.TrackingState == JointTrackingState.Tracked)) && !(nullable4.HasValue && (nullable4.Value.Position.Y >= nullable2.Value.Position.Y)))
-                {
-                    nullable4 = nullable2;
-                    rightHand = false;
-                }*/
-                if (nullable4.HasValue && nullable3.HasValue)
+
+
+
+
+
+
+                Joint? rightHand = this.GetJoint(JointType.HandRight);
+                Joint? shoulder = this.GetJoint(JointType.ShoulderCenter);
+                Joint? leftHand = this.GetJoint(JointType.HandLeft);
+                Joint? leftEllbow = this.GetJoint(JointType.ElbowLeft);
+
+                //Move Cursor
+
+                if (rightHand.HasValue && shoulder.HasValue)
                 {
                     int num;
                     int num2;
-                    this.ScaleXY(nullable3.Value, rightHand, nullable4.Value, out num, out num2);
+                    this.ScaleXY(shoulder.Value, true, rightHand.Value, out num, out num2);
                     if (this.mousePositionHistory.Count > 100)
                     {
                         this.mousePositionHistory.RemoveAt(0);
@@ -108,22 +111,57 @@ namespace KinectMouse
                     if ((this.mousePositionHistory.Count > 0x10) && ((((this.oldX != num) || (this.oldY != num2)) && (Math.Abs((int)(this.oldX - num)) < 350)) && (Math.Abs((int)(this.oldY - num2)) < 350)))
                     {
                         Point point = this.SmoothMousePosition();
-                        if ((nullable4.Value.TrackingState == JointTrackingState.Tracked) && (nullable3.Value.TrackingState == JointTrackingState.Tracked))
+                        if ((rightHand.Value.TrackingState == JointTrackingState.Tracked) && (shoulder.Value.TrackingState == JointTrackingState.Tracked))
                         {
                             MouseControl.MouseControl.Move((int)Math.Round(point.X), (int)Math.Round(point.Y));
                             this.oldX = (int)point.X;
                             this.oldY = (int)point.Y;
                         }
-                        this.HistoricHandJoints.Add(nullable4.Value);
-                        this.HistoricShoulderJoints.Add(nullable3.Value);
+                        this.HistoricHandJoints.Add(rightHand.Value);
+                        this.HistoricShoulderJoints.Add(rightHand.Value);
                         if (this.HistoricHandJoints.Count > 100)
                         {
                             this.HistoricHandJoints.RemoveAt(0);
                             this.HistoricShoulderJoints.RemoveAt(0);
                         }
-                        
+
                         this.clickDelay++;
                     }
+                }
+
+                //Check for left hand gestures
+                if (leftHand.HasValue && leftEllbow.HasValue && (leftEllbow.Value.Position.Y < leftHand.Value.Position.Y))
+                {
+                    leftHandX[leftHandTracked] = leftHand.Value.Position.X;
+                    this.leftHandTracked++;
+                    this.gestureReset++;
+
+                    if (leftHandTracked >= 30 && gestureReset >= 30)
+                    {
+                        gestureReset = 0;
+                        leftHandTracked = 0;
+                        leftHandUnTracked = 0;
+                        if ((leftHandX[29] - leftHandX[0]) > 0.3)
+                        {
+                            Console.WriteLine("Right Swipe");
+                        }
+
+                        if ((leftHandX[29] - leftHandX[0]) < -0.25)
+                        {
+                            Console.WriteLine("Left Swipe");
+                        }
+                    }
+                }
+                else
+                {
+                    this.leftHandUnTracked++;
+                    if (leftHandUnTracked >= 45)
+                    {
+                        leftHandTracked = 0;
+                        leftHandUnTracked = 0;
+                        Console.WriteLine("reset");
+                    }
+
                 }
             }
         }

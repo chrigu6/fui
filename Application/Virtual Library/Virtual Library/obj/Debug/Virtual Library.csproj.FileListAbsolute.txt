@@ -22,7 +22,6 @@ C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\bi
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\bin\Debug\Virtual Library.pdb
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\bin\Debug\Interop.AcroPDFLib.dll
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\bin\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csprojResolveAssemblyReference.cache
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Form1.resources
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Properties.Resources.resources
 C:\Users\Chrigu\Documents\FUI\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.GenerateResource.Cache
