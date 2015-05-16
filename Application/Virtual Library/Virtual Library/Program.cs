@@ -16,8 +16,8 @@ namespace Virtual_Library
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            KinectMouse.KinectInterface.Instance().StartKinectST();
             Form1 form = new Form1();
+            KinectMouse.KinectInterface.Instance().StartKinectST(form);
             Application.Run(form);
             
         }

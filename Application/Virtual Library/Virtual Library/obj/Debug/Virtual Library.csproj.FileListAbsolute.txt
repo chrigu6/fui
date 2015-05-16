@@ -39,3 +39,4 @@ C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Libra
 C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Form1.resources
 C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual_Library.Properties.Resources.resources
 C:\Users\Raphaël\Documents\GitHub\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csproj.GenerateResource.Cache
+C:\Users\Chrigu\Documents\fui\fui\Application\Virtual Library\Virtual Library\obj\Debug\Virtual Library.csprojResolveAssemblyReference.cache

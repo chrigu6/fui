@@ -195,6 +195,16 @@ namespace Virtual_Library
             library.Add(book3);
         }
 
+        public void swipeLeft()
+        {
+            this.textBox2.Text = "swipeLeft";
+        }
+
+        public void swipeRight()
+        {
+            this.textBox2.Text = "swipeRight";
+        }
+
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 

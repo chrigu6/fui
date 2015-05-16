@@ -34,6 +34,7 @@ namespace KinectMouse
         private int leftHandTracked = 0;
         private int leftHandUnTracked = 0;
         private int gestureReset = 40;
+        private Form1 form;
 
         // Speech recognition
         private SpeechRecognitionEngine spRecEng;
@@ -143,12 +144,12 @@ namespace KinectMouse
                         leftHandUnTracked = 0;
                         if ((leftHandX[29] - leftHandX[0]) > 0.3)
                         {
-                            Console.WriteLine("Right Swipe");
+                            this.form.swipeRight();
                         }
 
                         if ((leftHandX[29] - leftHandX[0]) < -0.25)
                         {
-                            Console.WriteLine("Left Swipe");
+                            this.form.swipeLeft();
                         }
                     }
                 }
@@ -362,8 +363,9 @@ namespace KinectMouse
         }
 
 
-        public void StartKinectST()
+        public void StartKinectST(Form1 form)
         {
+            this.form = form;
             int[] gaussFilter = this.gaussFilter;
             for (int i = 0; i < gaussFilter.Length; i++)
             {
