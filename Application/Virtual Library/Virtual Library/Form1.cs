@@ -120,11 +120,56 @@ namespace Virtual_Library
                 this.axAcroPDF1.setView("FitH");
                 this.axAcroPDF1.setLayoutMode("SinglePage");
                 this.axAcroPDF1.Show();
+                searchDocument("mathematics");
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
+        }
+
+        private void goToPage(int n)
+        {
+            this.axAcroPDF1.setCurrentPage(n);
+        }
+
+        private void goToNextPage()
+        {
+            this.axAcroPDF1.gotoNextPage();
+        }
+
+        private void goToPreviousPage()
+        {
+            this.axAcroPDF1.gotoPreviousPage();
+        }
+
+        private void searchDocument(String searchTerm)
+        {
+            this.axAcroPDF1.Select();
+            SendKeys.Send("^f");
+            SendKeys.Flush();
+            SendKeys.Send(searchTerm);
+            SendKeys.Flush();
+        }
+
+        private void searchNextOccurence()
+        {
+            this.axAcroPDF1.Select();
+            SendKeys.Send("^f");
+            SendKeys.Send("{ENTER}");
+        }
+
+        private void exitSearchBox()
+        {
+            this.axAcroPDF1.Select();
+            SendKeys.Send("{ESC}");
+        }
+
+        private void zoom(float zoomPercent)
+
+
+        {
+            this.axAcroPDF1.setZoom(zoomPercent);
         }
 
         private Books searchBook(String name)
