@@ -59,10 +59,10 @@
             // axAcroPDF1
             // 
             this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(461, 39);
+            this.axAcroPDF1.Location = new System.Drawing.Point(863, 12);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(439, 599);
+            this.axAcroPDF1.Size = new System.Drawing.Size(810, 1149);
             this.axAcroPDF1.TabIndex = 2;
             // 
             // textBox2
@@ -77,13 +77,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 650);
+
+            this.ClientSize = new System.Drawing.Size(1685, 1173);
             this.Controls.Add(this.textBox2);
+
             this.Controls.Add(this.axAcroPDF1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Virtual Library";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

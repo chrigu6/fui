@@ -120,7 +120,7 @@ namespace Virtual_Library
                 this.axAcroPDF1.setView("FitH");
                 this.axAcroPDF1.setLayoutMode("SinglePage");
                 this.axAcroPDF1.Show();
-                searchDocument("mathematics");
+                this.axAcroPDF1.setCurrentHighlight(100, 150, 20, 30);
             }
             catch (Exception ex)
             {
@@ -166,11 +166,12 @@ namespace Virtual_Library
         }
 
         private void zoom(float zoomPercent)
-
-
         {
             this.axAcroPDF1.setZoom(zoomPercent);
         }
+
+
+
 
         private Books searchBook(String name)
         {
@@ -251,6 +252,11 @@ namespace Virtual_Library
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
