@@ -19,7 +19,6 @@ namespace Virtual_Library
             Form1 form = new Form1();
             KinectMouse.KinectInterface.Instance().StartKinectST(form);
             Application.Run(form);
-            
         }
     }
 }

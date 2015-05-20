@@ -38,7 +38,7 @@ namespace KinectMouse
 
         // Speech recognition
         private SpeechRecognitionEngine spRecEng;
-        //confidence treshold
+        // Confidence treshold
         private const double ConfidenceThreshold = 0.8;
         public Form1 Form1;
         public TextBox textbox1;
@@ -290,13 +290,13 @@ namespace KinectMouse
         //Speech Recognizer
         private static RecognizerInfo GetKinectRecognizer()
         {
-            foreach (RecognizerInfo recgonizer in SpeechRecognitionEngine.InstalledRecognizers())
+            foreach (RecognizerInfo recognizer in SpeechRecognitionEngine.InstalledRecognizers())
             {
                 string value;
-                recgonizer.AdditionalInfo.TryGetValue("Kinect", out value);
-                if ("True".Equals(value, StringComparison.OrdinalIgnoreCase) && "en-US".Equals(recgonizer.Culture.Name, StringComparison.OrdinalIgnoreCase))
+                recognizer.AdditionalInfo.TryGetValue("Kinect", out value);
+                if ("True".Equals(value, StringComparison.OrdinalIgnoreCase) && "en-US".Equals(recognizer.Culture.Name, StringComparison.OrdinalIgnoreCase))
                 {
-                    return recgonizer;
+                    return recognizer;
                 }
             }
             return null;
@@ -328,6 +328,20 @@ namespace KinectMouse
             string semantic = "";
             switch (e.Result.Semantics.Value.ToString())
             {
+                case "NEW SEARCH":
+                    semantic = "Ok. Let's start a new search";
+                    t1.Text = "";
+                    t2.Text = "Say \"Search\" when you are ready.";
+                    // set the focus on textBox1
+                    this.form.ActiveControl = t1;
+                    break;
+
+                case "SEARCH CONTENT":
+                    semantic = "Say 'search' when you are ready";
+
+                    t1.Text = e.Result.Text;
+
+                    break;
                 case "CLICK":
                     semantic = "Click" + e.Result.Text;
                     //MouseOperations.SetCursorPosition();
@@ -337,19 +351,20 @@ namespace KinectMouse
                     break;
 
                 case "SEARCH":
-                    semantic = "I am searching in the database for you. You requested the word: " + t1.Text;
+                    this.form.ActiveControl = Form1;
+                    semantic = "Here are the results for the keyword: " + t1.Text;
                     form.searchMethod(t1);
                     t2.Text = (semantic);
 
                     break;
                 case "OPEN":
-                    semantic = "I am opening it.";
+                    semantic = "I will open it.";
                     t2.Text = (semantic);
 
 
                     break;
                 case "CLOSE":
-                    semantic = "I am closing this document for you.";
+                    semantic = "I have closed this document.";
                     t2.Text = (semantic);
 
                     break;
@@ -424,6 +439,7 @@ namespace KinectMouse
 
                     spRecEng.SetInputToAudioStream(Kinect.AudioSource.Start(), new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
                     spRecEng.RecognizeAsync(RecognizeMode.Multiple);
+
                 }
                 else
                 {

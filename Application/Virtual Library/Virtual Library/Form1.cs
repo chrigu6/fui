@@ -24,6 +24,7 @@ namespace Virtual_Library
         {
             InitializeComponent();
             InitializeLibrary();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -47,11 +48,12 @@ namespace Virtual_Library
             List<Books> results = Search(textBox1.Text);
             if (results.Count == 0)
             {
-                alert.Location = new Point(textBox1.Left, textBox1.Bottom + 5);
-                alert.Size = new Size(300, 30);
-                alert.Visible = true;
-                alert.Text = "There were no results with the provided keyword";
-                this.Controls.Add(alert);
+                //alert.Location = new Point(textBox1.Left, textBox1.Bottom + 5);
+                //alert.Size = new Size(300, 30);
+                //alert.Visible = true;
+                //alert.Text = "There were no results with the provided keyword";
+                textBox2.Text = "Sorry. I did not find any results with the provided keyword.";
+                //this.Controls.Add(alert);
             }
             foreach (Books book in results)
             {
@@ -77,11 +79,11 @@ namespace Virtual_Library
             PictureBox pb = new PictureBox();
             pb.Name = book.getName();
             if(tn.Count < 1) {
-                pb.Location = new Point(textBox1.Left, textBox1.Bottom + 5);
+                pb.Location = new Point(textBox1.Left, textBox1.Bottom + 30);
             }
             else
             {
-                pb.Location = new Point(tn[tn.Count() - 1].Right + 8, textBox1.Bottom + 5);
+                pb.Location = new Point(tn[tn.Count() - 1].Right + 8, textBox1.Bottom + 30);
             }
             pb.Size = new Size(120, 200);
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -247,6 +249,7 @@ namespace Virtual_Library
             book3.setTag("mathematics");
             book3.setTag("euclid");
             library.Add(book3);
+
         }
 
         public void swipeLeft()
@@ -266,7 +269,6 @@ namespace Virtual_Library
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -275,6 +277,15 @@ namespace Virtual_Library
             {
                 searchMethod(textBox1);
             }
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
         }
     }
 }
