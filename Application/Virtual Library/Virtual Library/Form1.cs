@@ -268,5 +268,13 @@ namespace Virtual_Library
         {
 
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchMethod(textBox1);
+            }
+        }
     }
 }
