@@ -4,9 +4,11 @@
       <item>
         <tag>CLICK</tag>
         <one-of>
-          <item> click </item>
+          <item> cleek </item>
+          <item> cleak </item>
           <item> clic </item>
           <item> take </item>
+          <item> select </item>
         </one-of>
       </item>
       <item>
@@ -44,6 +46,7 @@
         <tag>EXIT_COMMANDS</tag>
         <one-of>
           <item>shut down</item>
+          <item>exit</item>
           <item>close the application</item>
           <item>exit the application</item>
           <item>quit the application</item>

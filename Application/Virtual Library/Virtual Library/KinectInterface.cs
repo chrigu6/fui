@@ -40,7 +40,8 @@ namespace KinectMouse
         private SpeechRecognitionEngine spRecEng;
         //confidence treshold
         private const double ConfidenceThreshold = 0.8;
-        public Form1 MyForm;
+        public Form1 Form1;
+        public TextBox textbox1;
 
         private KinectInterface()
         {
@@ -304,13 +305,21 @@ namespace KinectMouse
 
         void spRecEng_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("I did not understand. Could you repeat, please?");
+            //System.Windows.Forms.MessageBox.Show("I did not understand. Could you repeat, please?");
+            TextBox t2 = System.Windows.Forms.Application.OpenForms["Form1"].Controls["textBox2"] as TextBox;
+            t2.Text = ("I did not understand. Could you repeat, please ?");
             //MyForm.textBox2.Text = "What did you say? You said: ???";
             //this.semanticRep.Text = "What did you say?";
             //this.spoken.Text = "???";
         }
         void spRecEng_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            //Form1 form1 = new Form1();
+            //reference for textbox1's content
+            TextBox t1 = System.Windows.Forms.Application.OpenForms["Form1"].Controls["textBox1"] as TextBox;
+            TextBox t2 = System.Windows.Forms.Application.OpenForms["Form1"].Controls["textBox2"] as TextBox;
+            
+
             if (e.Result.Confidence < ConfidenceThreshold)
             {
                 //engine is not confident about result => ignore it
@@ -321,39 +330,46 @@ namespace KinectMouse
             {
                 case "CLICK":
                     semantic = "Click" + e.Result.Text;
-                    System.Windows.Forms.MessageBox.Show("You want to click");
-                //MouseOperations.SetCursorPosition();
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    //MouseOperations.SetCursorPosition();
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+
                     break;
 
                 case "SEARCH":
-                    semantic = "You want to search something, you said: " + e.Result.Text;
-                    System.Windows.Forms.MessageBox.Show(semantic);
-                    //MyForm.textBox2.Clear = "search";
+                    semantic = "I am searching in the database for you. You requested the word: " + t1.Text;
+                    form.searchMethod(t1);
+                    t2.Text = (semantic);
 
                     break;
                 case "OPEN":
-                    semantic = "You want to open a document, you said: " + e.Result.Text;
-                    System.Windows.Forms.MessageBox.Show(semantic);
+                    semantic = "I am opening it.";
+                    t2.Text = (semantic);
+
 
                     break;
                 case "CLOSE":
-                    semantic = "You want to close a document, you said: " + e.Result.Text;
-                    System.Windows.Forms.MessageBox.Show(semantic);
+                    semantic = "I am closing this document for you.";
+                    t2.Text = (semantic);
 
                     break;
                 case "SELECTION":
                     semantic = "You talk about a document, you said: " + e.Result.Text;
-                    System.Windows.Forms.MessageBox.Show(semantic);
+                    t2.Text = (semantic);
 
                     break;
                 case "EXIT_COMMANDS":
-                    MyForm.Close();
+                    semantic = "Goodbye !";
+                    t2.Text = (semantic);
+
+                    System.Threading.Thread.Sleep(2000);
+
+                    form.Close();
                     break;
                 default:
-                    semantic = "I am confident that I heard something, but I don't know what";
-                    System.Windows.Forms.MessageBox.Show(semantic);
+                    semantic = "I am confident that I heard something, but I don't know what.";
+                    t2.Text = (semantic);
+
                     break;
             }
 

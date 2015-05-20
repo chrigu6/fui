@@ -59,17 +59,19 @@
             // axAcroPDF1
             // 
             this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(863, 12);
+            this.axAcroPDF1.Location = new System.Drawing.Point(461, 36);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(810, 1149);
+            this.axAcroPDF1.Size = new System.Drawing.Size(795, 1152);
             this.axAcroPDF1.TabIndex = 2;
             // 
             // textBox2
             // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(461, 10);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(439, 20);
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(599, 20);
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "Hello ! How can I help you ?";
             // 
@@ -77,10 +79,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize = new System.Drawing.Size(1685, 1173);
+            this.ClientSize = new System.Drawing.Size(1268, 765);
             this.Controls.Add(this.textBox2);
-
             this.Controls.Add(this.axAcroPDF1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);

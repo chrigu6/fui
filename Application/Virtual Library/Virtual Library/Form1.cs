@@ -33,6 +33,11 @@ namespace Virtual_Library
 
         private void button1_Click(object sender, EventArgs e)
         {
+            searchMethod(textBox1);
+        }
+
+        public void searchMethod(TextBox textBox1)
+        {
             foreach (PictureBox thumb in tn)
             {
                 thumb.Dispose();
@@ -48,11 +53,14 @@ namespace Virtual_Library
                 alert.Text = "There were no results with the provided keyword";
                 this.Controls.Add(alert);
             }
-            foreach(Books book in results) 
+            foreach (Books book in results)
             {
                 addPictureBox(book);
+                textBox2.Text = "I am searching in the database for you. You requested the word: " + textBox1.Text;
             }
+
         }
+
 
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -243,12 +251,12 @@ namespace Virtual_Library
 
         public void swipeLeft()
         {
-            this.textBox2.Text = "swipeLeft";
+            this.textBox2.Text = "I swipe it left.";
         }
 
         public void swipeRight()
         {
-            this.textBox2.Text = "swipeRight";
+            this.textBox2.Text = "I swipe it right";
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
