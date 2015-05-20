@@ -210,7 +210,7 @@ namespace Virtual_Library
             {
                 foreach (String tag in book.getTags())
                 {
-                    if (tag == keyword)
+                    if (tag.Contains(keyword))
                     {
                         result.Add(book);
                         break;
