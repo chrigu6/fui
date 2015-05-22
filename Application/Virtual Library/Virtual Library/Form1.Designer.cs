@@ -32,8 +32,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.bookmarkbutton = new System.Windows.Forms.Button();
+            this.showBookmarkButton = new System.Windows.Forms.Button();
+            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,15 +60,6 @@
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
-            // axAcroPDF1
-            // 
-            this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(461, 36);
-            this.axAcroPDF1.Name = "axAcroPDF1";
-            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(795, 1152);
-            this.axAcroPDF1.TabIndex = 2;
-            // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,13 +71,44 @@
             this.textBox2.Text = "Say \"New search\" to start a new search.";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
+            // bookmarkbutton
+            // 
+            this.bookmarkbutton.Location = new System.Drawing.Point(461, 10);
+            this.bookmarkbutton.Name = "bookmarkbutton";
+            this.bookmarkbutton.Size = new System.Drawing.Size(75, 23);
+            this.bookmarkbutton.TabIndex = 4;
+            this.bookmarkbutton.Text = "Bookmark";
+            this.bookmarkbutton.UseVisualStyleBackColor = true;
+            this.bookmarkbutton.Click += new System.EventHandler(this.bookmarkbutton_Click);
+            // 
+            // showBookmarkButton
+            // 
+            this.showBookmarkButton.Location = new System.Drawing.Point(542, 10);
+            this.showBookmarkButton.Name = "showBookmarkButton";
+            this.showBookmarkButton.Size = new System.Drawing.Size(99, 23);
+            this.showBookmarkButton.TabIndex = 6;
+            this.showBookmarkButton.Text = "Show Bookmarks";
+            this.showBookmarkButton.UseVisualStyleBackColor = true;
+            this.showBookmarkButton.Click += new System.EventHandler(this.showBookmarkButton_Click);
+            // 
+            // axAcroPDF1
+            // 
+            this.axAcroPDF1.Enabled = true;
+            this.axAcroPDF1.Location = new System.Drawing.Point(461, 39);
+            this.axAcroPDF1.Name = "axAcroPDF1";
+            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
+            this.axAcroPDF1.Size = new System.Drawing.Size(795, 1147);
+            this.axAcroPDF1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 765);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(1268, 1198);
             this.Controls.Add(this.axAcroPDF1);
+            this.Controls.Add(this.showBookmarkButton);
+            this.Controls.Add(this.bookmarkbutton);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -101,8 +125,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button bookmarkbutton;
+        private System.Windows.Forms.Button showBookmarkButton;
+        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
     }
 }
 

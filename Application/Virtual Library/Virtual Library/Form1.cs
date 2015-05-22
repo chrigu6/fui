@@ -16,7 +16,8 @@ namespace Virtual_Library
     {
         List<Books> library = new List<Books>();
         List<PictureBox> tn = new List<PictureBox>();
-        Label alert = new Label();
+        List<Books> bookmarks = new List<Books>();
+        Books activeBook = null;
 
         
 
@@ -43,22 +44,38 @@ namespace Virtual_Library
             {
                 thumb.Dispose();
             }
-            alert.Visible = false;
             tn.Clear();
             List<Books> results = Search(textBox1.Text);
             if (results.Count == 0)
             {
-                //alert.Location = new Point(textBox1.Left, textBox1.Bottom + 5);
-                //alert.Size = new Size(300, 30);
-                //alert.Visible = true;
-                //alert.Text = "There were no results with the provided keyword";
                 textBox2.Text = "Sorry. I did not find any results with the provided keyword.";
-                //this.Controls.Add(alert);
             }
             foreach (Books book in results)
             {
                 addPictureBox(book);
                 textBox2.Text = "I am searching in the database for you. You requested the word: " + textBox1.Text;
+            }
+
+        }
+
+        public void showBookmarks()
+        {
+            foreach (PictureBox thumb in tn)
+            {
+                thumb.Dispose();
+            }
+            tn.Clear();
+            if (bookmarks.Count == 0)
+            {
+                textBox2.Text = "You don't have any bookmarks";
+            }
+            else
+            {
+                textBox2.Text = "Your Bookmarks:";
+                foreach (Books book in bookmarks)
+                {
+                    addPictureBox(book);
+                }
             }
 
         }
@@ -94,7 +111,10 @@ namespace Virtual_Library
             pb.MouseEnter += new EventHandler(highlightBook);
             pb.MouseLeave += new EventHandler(resizeBook);
             this.Controls.Add(pb);
-            tn.Add(pb);
+            if (!tn.Exists(x => x.Name == pb.Name))
+            {
+                tn.Add(pb);
+            }
         }
 
         private void highlightBook(object sender, EventArgs e)
@@ -117,6 +137,7 @@ namespace Virtual_Library
         {
             var clickedPicture = (PictureBox)sender;
             var book = searchBook(clickedPicture.Name);
+            this.activeBook = book;
             InitializeAdobe(book.getPath());
         }
 
@@ -130,7 +151,6 @@ namespace Virtual_Library
                 this.axAcroPDF1.setView("FitH");
                 this.axAcroPDF1.setLayoutMode("SinglePage");
                 this.axAcroPDF1.Show();
-                this.axAcroPDF1.setCurrentHighlight(100, 150, 20, 30);
             }
             catch (Exception ex)
             {
@@ -178,6 +198,14 @@ namespace Virtual_Library
         private void zoom(float zoomPercent)
         {
             this.axAcroPDF1.setZoom(zoomPercent);
+        }
+
+        private void bookmark(Books book)
+        {
+            if (!bookmarks.Exists(x => x.getName() == book.getName()))
+            {
+                bookmarks.Add(book);
+            }
         }
 
 
@@ -286,6 +314,23 @@ namespace Virtual_Library
         private void textBox1_Enter(object sender, EventArgs e)
         {
             textBox1.Text = "";
+        }
+
+        private void bookmarkbutton_Click(object sender, EventArgs e)
+        {
+            if (this.activeBook != null)
+            {
+                bookmark(this.activeBook);
+            }
+            else
+            {
+                textBox2.Text = "There is no book selected";
+            }
+        }
+
+        private void showBookmarkButton_Click(object sender, EventArgs e)
+        {
+            showBookmarks();
         }
     }
 }
