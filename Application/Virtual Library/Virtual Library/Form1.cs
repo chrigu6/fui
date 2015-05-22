@@ -80,6 +80,10 @@ namespace Virtual_Library
 
         }
 
+        private void deleteBookmark(Books book)
+        {
+            bookmarks.Remove(bookmarks.Find(x => x.getName() == book.getName()));
+        }
 
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -331,6 +335,14 @@ namespace Virtual_Library
         private void showBookmarkButton_Click(object sender, EventArgs e)
         {
             showBookmarks();
+        }
+
+        private void deleteBookmarkButton_Click(object sender, EventArgs e)
+        {
+            if (bookmarks.Exists(x => x.getName() == activeBook.getName()))
+            {
+                deleteBookmark(activeBook);
+            }
         }
     }
 }
