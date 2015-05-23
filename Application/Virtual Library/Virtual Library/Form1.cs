@@ -80,11 +80,6 @@ namespace Virtual_Library
 
         }
 
-        private void deleteBookmark(Books book)
-        {
-            bookmarks.Remove(bookmarks.Find(x => x.getName() == book.getName()));
-        }
-
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -142,6 +137,7 @@ namespace Virtual_Library
             var clickedPicture = (PictureBox)sender;
             var book = searchBook(clickedPicture.Name);
             this.activeBook = book;
+            activeBookLabel.Text = "Active Book: " + book.getName();
             InitializeAdobe(book.getPath());
         }
 
@@ -209,10 +205,16 @@ namespace Virtual_Library
             if (!bookmarks.Exists(x => x.getName() == book.getName()))
             {
                 bookmarks.Add(book);
+                textBox2.Text = "Bookmarked the book " + book.getName() + ".";
             }
         }
 
-
+        private void deleteBookmark(Books book)
+        {
+            bookmarks.Remove(bookmarks.Find(x => x.getName() == book.getName()));
+            textBox2.Text = "You've deleted the book " + book.getName() + " from your bookmarks.";
+            showBookmarks();
+        }
 
 
         private Books searchBook(String name)

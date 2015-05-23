@@ -37,6 +37,7 @@
             this.showBookmarkButton = new System.Windows.Forms.Button();
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.deleteBookmarkButton = new System.Windows.Forms.Button();
+            this.activeBookLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,11 +112,21 @@
             this.deleteBookmarkButton.UseVisualStyleBackColor = true;
             this.deleteBookmarkButton.Click += new System.EventHandler(this.deleteBookmarkButton_Click);
             // 
+            // activeBookLabel
+            // 
+            this.activeBookLabel.AutoSize = true;
+            this.activeBookLabel.Location = new System.Drawing.Point(750, 15);
+            this.activeBookLabel.Name = "activeBookLabel";
+            this.activeBookLabel.Size = new System.Drawing.Size(71, 13);
+            this.activeBookLabel.TabIndex = 9;
+            this.activeBookLabel.Text = "Active Book: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1268, 1198);
+            this.Controls.Add(this.activeBookLabel);
             this.Controls.Add(this.deleteBookmarkButton);
             this.Controls.Add(this.axAcroPDF1);
             this.Controls.Add(this.showBookmarkButton);
@@ -142,6 +153,7 @@
         private System.Windows.Forms.Button showBookmarkButton;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         private System.Windows.Forms.Button deleteBookmarkButton;
+        private System.Windows.Forms.Label activeBookLabel;
     }
 }
 
