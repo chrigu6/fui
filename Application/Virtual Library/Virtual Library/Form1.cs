@@ -146,7 +146,6 @@ namespace Virtual_Library
             try
             {
                 this.axAcroPDF1.LoadFile(filePath);
-                this.axAcroPDF1.src = filePath;
                 this.axAcroPDF1.setShowToolbar(true);
                 this.axAcroPDF1.setView("FitH");
                 this.axAcroPDF1.setLayoutMode("SinglePage");
