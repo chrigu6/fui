@@ -1,0 +1,12 @@
+USER EVALUATION:
+
+Evaluation type: within group (users 
+
+Evaluation procedure:
+explain the user what he can do (written instructions, same for every users)
+explain how to bookmark (first select, then bookmark),
+then give him a certain task
+what to record:
+time taken to execute the task
+errors (e.g. clicks on the wrong buttons)
+which modalities do your prefer, find more natural ?
