@@ -353,7 +353,7 @@ namespace KinectMouse
                 case "SEARCH":
                     this.form.ActiveControl = Form1;
                     semantic = "Here are the results for the keyword: " + t1.Text;
-                    form.searchMethod(t1);
+                    form.searchMethod();
                     t2.Text = (semantic);
 
                     break;

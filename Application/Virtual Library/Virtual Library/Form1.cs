@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Virtual_Library
 {
@@ -19,14 +20,17 @@ namespace Virtual_Library
         List<Books> bookmarks = new List<Books>();
         Books activeBook = null;
 
-        
+        private const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        private const int MOUSEEVENTF_LEFTUP = 0x04;
 
         public Form1()
         {
             InitializeComponent();
             InitializeLibrary();
-
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        private static extern void mouse_event(long dwFlags, long dx, long dy);
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -35,10 +39,10 @@ namespace Virtual_Library
 
         private void button1_Click(object sender, EventArgs e)
         {
-            searchMethod(textBox1);
+            searchMethod();
         }
 
-        public void searchMethod(TextBox textBox1)
+        public void searchMethod()
         {
             foreach (PictureBox thumb in tn)
             {
@@ -48,34 +52,12 @@ namespace Virtual_Library
             List<Books> results = Search(textBox1.Text);
             if (results.Count == 0)
             {
-                textBox2.Text = "Sorry. I did not find any results with the provided keyword.";
+                textBox2.Text = "Sorry. I did not find any results with the keyword " + textBox1.Text + ".";
             }
             foreach (Books book in results)
             {
                 addPictureBox(book);
                 textBox2.Text = "I am searching in the database for you. You requested the word: " + textBox1.Text;
-            }
-
-        }
-
-        public void showBookmarks()
-        {
-            foreach (PictureBox thumb in tn)
-            {
-                thumb.Dispose();
-            }
-            tn.Clear();
-            if (bookmarks.Count == 0)
-            {
-                textBox2.Text = "You don't have any bookmarks";
-            }
-            else
-            {
-                textBox2.Text = "Your Bookmarks:";
-                foreach (Books book in bookmarks)
-                {
-                    addPictureBox(book);
-                }
             }
 
         }
@@ -106,7 +88,7 @@ namespace Virtual_Library
             pb.Image = book.getThumbnail();
             pb.Visible = true;
             pb.Cursor = Cursors.Hand;
-            pb.Click += new EventHandler(thumbnailClick);
+            pb.Click += new EventHandler(open);
             pb.MouseEnter += new EventHandler(highlightBook);
             pb.MouseLeave += new EventHandler(resizeBook);
             this.Controls.Add(pb);
@@ -132,7 +114,7 @@ namespace Virtual_Library
             book.Size = new Size(120, 200);
         }
 
-        private void thumbnailClick(object sender, EventArgs e)
+        public void open(object sender, EventArgs e)
         {
             var clickedPicture = (PictureBox)sender;
             var book = searchBook(clickedPicture.Name);
@@ -157,22 +139,22 @@ namespace Virtual_Library
             }
         }
 
-        private void goToPage(int n)
+        public void goToPage(int n)
         {
             this.axAcroPDF1.setCurrentPage(n);
         }
 
-        private void goToNextPage()
+        public void goToNextPage()
         {
             this.axAcroPDF1.gotoNextPage();
         }
 
-        private void goToPreviousPage()
+        public void goToPreviousPage()
         {
             this.axAcroPDF1.gotoPreviousPage();
         }
 
-        private void searchDocument(String searchTerm)
+        public void searchDocument(String searchTerm)
         {
             this.axAcroPDF1.Select();
             SendKeys.Send("^f");
@@ -181,25 +163,25 @@ namespace Virtual_Library
             SendKeys.Flush();
         }
 
-        private void searchNextOccurence()
+        public void searchNextOccurence()
         {
             this.axAcroPDF1.Select();
             SendKeys.Send("^f");
             SendKeys.Send("{ENTER}");
         }
 
-        private void exitSearchBox()
+        public void exitSearchBox()
         {
             this.axAcroPDF1.Select();
             SendKeys.Send("{ESC}");
         }
 
-        private void zoom(float zoomPercent)
+        public void zoom(float zoomPercent)
         {
             this.axAcroPDF1.setZoom(zoomPercent);
         }
 
-        private void bookmark(Books book)
+        public void bookmark(Books book)
         {
             if (!bookmarks.Exists(x => x.getName() == book.getName()))
             {
@@ -208,13 +190,52 @@ namespace Virtual_Library
             }
         }
 
-        private void deleteBookmark(Books book)
+        public void deleteBookmark(Books book)
         {
             bookmarks.Remove(bookmarks.Find(x => x.getName() == book.getName()));
             textBox2.Text = "You've deleted the book " + book.getName() + " from your bookmarks.";
             showBookmarks();
         }
 
+        public void showBookmarks()
+        {
+            foreach (PictureBox thumb in tn)
+            {
+                thumb.Dispose();
+            }
+            tn.Clear();
+            if (bookmarks.Count == 0)
+            {
+                textBox2.Text = "You don't have any bookmarks";
+            }
+            else
+            {
+                textBox2.Text = "Your Bookmarks:";
+                foreach (Books book in bookmarks)
+                {
+                    addPictureBox(book);
+                }
+            }
+
+        }
+
+        public void hightlightText()
+        {
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+        }
+
+        public void searchHighlightedWord()
+        {
+            this.axAcroPDF1.Select();
+            SendKeys.Send("^c");
+            textBox1.Text = Clipboard.GetText();
+            searchMethod();
+        }
 
         private Books searchBook(String name)
         {
@@ -308,7 +329,7 @@ namespace Virtual_Library
         {
             if (e.KeyCode == Keys.Enter)
             {
-                searchMethod(textBox1);
+                searchMethod();
             }
         }
 
