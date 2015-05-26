@@ -375,6 +375,21 @@ namespace KinectMouse
                     t2.Text = (semantic);
 
                     break;
+
+                case "BOOKMARK":
+                    form.bookmark();
+                    semantic = "I sucessfuly bookmarked this document";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "UNBOOKMARK":
+                    form.deleteBookmark();
+                    semantic = "I removed this document from your bookmarks";
+                    t2.Text = (semantic);
+
+                    break;
+
                 case "SELECTION":
                     semantic = "You talk about a document, you said: " + e.Result.Text;
                     t2.Text = (semantic);

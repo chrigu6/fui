@@ -55,6 +55,24 @@
         </one-of>
       </item>
       <item>
+        <tag>BOOKMARK</tag>
+        <one-of>
+          <item> bookmark </item>
+          <item> bookmark this </item>
+          <item> bookmark this PDF </item>
+          <item> bookmark it </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>UNBOOKMARK </tag>
+        <one-of>
+          <item> unbookmark </item>
+          <item> unbookmark this </item>
+          <item> unbookmark this PDF </item>
+          <item> unbookmark it </item>
+        </one-of>
+      </item>
+      <item>
         <tag>SELECTION</tag>
         <one-of>
           <item> this </item>

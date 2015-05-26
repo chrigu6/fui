@@ -18,10 +18,11 @@ namespace Virtual_Library
         List<Books> library = new List<Books>();
         List<PictureBox> tn = new List<PictureBox>();
         List<Books> bookmarks = new List<Books>();
-        Books activeBook = null;
+        private Books activeBook = null;
 
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
+                   
 
         public Form1()
         {
@@ -118,7 +119,7 @@ namespace Virtual_Library
         {
             var clickedPicture = (PictureBox)sender;
             var book = searchBook(clickedPicture.Name);
-            this.activeBook = book;
+            activeBook = book;
             activeBookLabel.Text = "Active Book: " + book.getName();
             InitializeAdobe(book.getPath());
         }
@@ -181,19 +182,20 @@ namespace Virtual_Library
             this.axAcroPDF1.setZoom(zoomPercent);
         }
 
-        public void bookmark(Books book)
+        public  void bookmark()
         {
-            if (!bookmarks.Exists(x => x.getName() == book.getName()))
+            if (!bookmarks.Exists(x => x.getName() == activeBook.getName()))
             {
-                bookmarks.Add(book);
-                textBox2.Text = "Bookmarked the book " + book.getName() + ".";
+                bookmarks.Add(activeBook);
+                textBox2.Text = "Bookmarked the book " + activeBook.getName() + ".";
             }
         }
 
-        public void deleteBookmark(Books book)
+        public void deleteBookmark()
         {
-            bookmarks.Remove(bookmarks.Find(x => x.getName() == book.getName()));
-            textBox2.Text = "You've deleted the book " + book.getName() + " from your bookmarks.";
+
+            bookmarks.Remove(bookmarks.Find(x => x.getName() == activeBook.getName()));
+            textBox2.Text = "You've deleted the book " + activeBook.getName() + " from your bookmarks.";
             showBookmarks();
         }
 
@@ -344,9 +346,9 @@ namespace Virtual_Library
 
         private void bookmarkbutton_Click(object sender, EventArgs e)
         {
-            if (this.activeBook != null)
+            if (activeBook != null)
             {
-                bookmark(this.activeBook);
+                bookmark();
             }
             else
             {
@@ -363,7 +365,7 @@ namespace Virtual_Library
         {
             if (bookmarks.Exists(x => x.getName() == activeBook.getName()))
             {
-                deleteBookmark(activeBook);
+                deleteBookmark();
             }
         }
 
