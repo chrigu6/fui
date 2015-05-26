@@ -308,12 +308,12 @@ namespace Virtual_Library
 
         public void swipeLeft()
         {
-            this.textBox2.Text = "I swipe it left.";
+            this.goToPreviousPage();
         }
 
         public void swipeRight()
         {
-            this.textBox2.Text = "I swipe it right";
+            this.goToNextPage();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -366,5 +366,33 @@ namespace Virtual_Library
                 deleteBookmark(activeBook);
             }
         }
+
+        public void rightHandTracked(bool state)
+        {
+            if(state)
+            {
+                this.rightHandBox.BackColor = Color.Green;
+            }
+
+            else
+            {
+                this.rightHandBox.BackColor = Color.Red;
+            }
+        }
+
+        public void leftHandTracked(bool state)
+        {
+            if (state)
+            {
+                this.leftHandBox.BackColor = Color.Green;
+            }
+
+            else
+            {
+                this.leftHandBox.BackColor = Color.Red;
+            }
+        }
+
+
     }
 }

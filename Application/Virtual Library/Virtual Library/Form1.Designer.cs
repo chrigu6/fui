@@ -38,7 +38,13 @@
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.deleteBookmarkButton = new System.Windows.Forms.Button();
             this.activeBookLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.leftHandBox = new System.Windows.Forms.TextBox();
+            this.rightHandBox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -121,11 +127,62 @@
             this.activeBookLabel.TabIndex = 9;
             this.activeBookLabel.Text = "Active Book: ";
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(120, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Right Hand:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Left Hand:";
+            // 
+            // leftHandBox
+            // 
+            this.leftHandBox.BackColor = System.Drawing.Color.Red;
+            this.leftHandBox.Enabled = false;
+            this.leftHandBox.Location = new System.Drawing.Point(9, 56);
+            this.leftHandBox.Name = "leftHandBox";
+            this.leftHandBox.Size = new System.Drawing.Size(34, 20);
+            this.leftHandBox.TabIndex = 13;
+            // 
+            // rightHandBox
+            // 
+            this.rightHandBox.BackColor = System.Drawing.Color.Red;
+            this.rightHandBox.Enabled = false;
+            this.rightHandBox.Location = new System.Drawing.Point(135, 56);
+            this.rightHandBox.Name = "rightHandBox";
+            this.rightHandBox.Size = new System.Drawing.Size(36, 20);
+            this.rightHandBox.TabIndex = 14;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rightHandBox);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.leftHandBox);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(12, 950);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tracking State";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 1198);
+            this.ClientSize = new System.Drawing.Size(1268, 1062);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.activeBookLabel);
             this.Controls.Add(this.deleteBookmarkButton);
             this.Controls.Add(this.axAcroPDF1);
@@ -138,6 +195,8 @@
             this.Text = "Virtual Library";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +213,11 @@
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         private System.Windows.Forms.Button deleteBookmarkButton;
         private System.Windows.Forms.Label activeBookLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox leftHandBox;
+        private System.Windows.Forms.TextBox rightHandBox;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

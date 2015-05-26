@@ -102,6 +102,7 @@ namespace KinectMouse
 
                 if (rightHand.HasValue && shoulder.HasValue)
                 {
+                    form.rightHandTracked(true);
                     int num;
                     int num2;
                     this.ScaleXY(shoulder.Value, true, rightHand.Value, out num, out num2);
@@ -130,10 +131,15 @@ namespace KinectMouse
                         this.clickDelay++;
                     }
                 }
+                else
+                {
+                    form.rightHandTracked(false);
+                }
 
                 //Check for left hand gestures
                 if (leftHand.HasValue && leftEllbow.HasValue && (leftEllbow.Value.Position.Y < leftHand.Value.Position.Y))
                 {
+                    form.leftHandTracked(true);
                     leftHandX[leftHandTracked] = leftHand.Value.Position.X;
                     this.leftHandTracked++;
                     this.gestureReset++;
@@ -156,6 +162,7 @@ namespace KinectMouse
                 }
                 else
                 {
+                    form.leftHandTracked(false);
                     this.leftHandUnTracked++;
                     if (leftHandUnTracked >= 45)
                     {
