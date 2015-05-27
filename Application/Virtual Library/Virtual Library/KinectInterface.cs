@@ -98,6 +98,7 @@ namespace KinectMouse
                 Joint? shoulder = this.GetJoint(JointType.ShoulderCenter);
                 Joint? leftHand = this.GetJoint(JointType.HandLeft);
                 Joint? leftEllbow = this.GetJoint(JointType.ElbowLeft);
+                Joint? head = this.GetJoint(JointType.Head);
 
                 //Move Cursor
 
@@ -138,26 +139,28 @@ namespace KinectMouse
                 }
 
                 //Check for left hand gestures
-                if (leftHand.HasValue && leftEllbow.HasValue && (leftEllbow.Value.Position.Y < leftHand.Value.Position.Y))
+                if (leftHand.HasValue && leftEllbow.HasValue && (leftEllbow.Value.Position.Y < leftHand.Value.Position.Y) && head.HasValue)
                 {
                     form.leftHandTracked(true);
                     leftHandX[leftHandTracked] = leftHand.Value.Position.X;
                     this.leftHandTracked++;
                     this.gestureReset++;
 
+                    //form.textBox2.Text = (head.Value.Position.X - leftHand.Value.Position.X).ToString();
+
                     if (leftHandTracked >= 30 && gestureReset >= 30)
                     {
                         gestureReset = 0;
                         leftHandTracked = 0;
                         leftHandUnTracked = 0;
-                        if ((leftHandX[29] - leftHandX[0]) > 0.3)
-                        {
-                            this.form.swipeRight();
-                        }
-
-                        if ((leftHandX[29] - leftHandX[0]) < -0.25)
+                        if (head.Value.Position.X - leftHand.Value.Position.X > 0.35)
                         {
                             this.form.swipeLeft();
+                        }
+
+                        if ((head.Value.Position.X - leftHand.Value.Position.X) < -0.1)
+                        {
+                            this.form.swipeRight();
                         }
                     }
                 }
