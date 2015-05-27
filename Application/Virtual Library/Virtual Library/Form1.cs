@@ -51,15 +51,20 @@ namespace Virtual_Library
             }
             tn.Clear();
             List<Books> results = Search(textBox1.Text);
+
             if (results.Count == 0)
             {
-                textBox2.Text = "Sorry. I did not find any results with the keyword " + textBox1.Text + ".";
+                textBox2.Text = "Sorry. No results with the keyword " + textBox1.Text + ". Say \"New search\".";
             }
             foreach (Books book in results)
             {
                 addPictureBox(book);
-                textBox2.Text = "I am searching in the database for you. You requested the word: " + textBox1.Text;
+                textBox2.Text = "Here are the search results for the word \"" + textBox1.Text + "\".";
             }
+            if (textBox1.Text == "")
+            {
+                textBox2.Text = "Here are all the books of your library.";
+            } 
 
         }
 
@@ -221,14 +226,15 @@ namespace Virtual_Library
 
         }
 
-        public void hightlightText()
+        public void highlightText()
         {
             int X = Cursor.Position.X;
             int Y = Cursor.Position.Y;
-            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
-            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
-            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
-            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            //mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            //mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            //mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            //mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            axAcroPDF1.setCurrentHighlight(X - 500, Y - 600, 50, 20);
         }
 
         public void searchHighlightedWord()

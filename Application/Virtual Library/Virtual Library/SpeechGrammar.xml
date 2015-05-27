@@ -27,10 +27,16 @@
         <tag>CLICK</tag>
         <one-of>
           <item> cleek </item>
+          <item> kleek </item>
+          <item> klik </item>
+          <item> klyk </item>
           <item> cleak </item>
           <item> clic </item>
+          <item> clique </item>
           <item> take </item>
           <item> select </item>
+          <item> open </item>
+          <item> read </item>
         </one-of>
       </item>
       <item>
@@ -38,20 +44,6 @@
         <one-of>
           <item> search </item>
           <item> find </item>
-        </one-of>
-      </item>
-      <item>
-        <tag>OPEN</tag>
-        <one-of>
-          <item> open </item>
-          <item> read </item>
-        </one-of>
-      </item>
-      <item>
-        <tag>CLOSE</tag>
-        <one-of>
-          <item> close </item>
-          <item> quit </item>
         </one-of>
       </item>
       <item>
@@ -64,12 +56,65 @@
         </one-of>
       </item>
       <item>
-        <tag>UNBOOKMARK </tag>
+        <tag>UNBOOKMARK</tag>
         <one-of>
           <item> unbookmark </item>
           <item> unbookmark this </item>
           <item> unbookmark this PDF </item>
           <item> unbookmark it </item>
+          <item> delete bookmark </item>
+          <item> delete this bookmark </item>
+          <item> remove this bookmark </item>
+          <item> remove the bookmark </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>SHOW BOOKMARKS</tag>
+        <one-of>
+          <item> show bookmarks </item>
+          <item> show bookmark </item>
+          <item> show me the bookmarks </item>
+          <item> show the bookmarks </item>
+          <item> show the bookmark</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>ZOOM</tag>
+        <one-of>
+          <item> zoom </item>
+          <item> zoom in </item>
+          <item> zoom out </item>
+          <item> make it bigger </item>
+          <item> make the text bigger </item>
+          <item> enlarge </item>
+          <item> enlarge text size </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>UNZOOM</tag>
+        <one-of>
+          <item> zoom out </item>
+          <item> unzoom </item>
+          <item> decrease text size </item>
+          <item> zoomout </item>
+          <item> make the text smaller </item>
+        </one-of>
+      </item>
+        <item>
+        <tag>HIGHLIGHT WORD </tag>
+        <one-of>
+          <item> highlight this word </item>
+          <item> hightlight this </item>
+          <item> hightlight it </item>
+          <item> highlight </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>SEARCH HIGHLIGHTED </tag>
+        <one-of>
+          <item> search for the highlighted word </item>
+          <item> search the highlighted word </item>
+          <item> search highlighted </item>
         </one-of>
       </item>
       <item>
@@ -83,10 +128,30 @@
         </one-of>
       </item>
       <item>
+        <tag>NEXT PAGE</tag>
+        <one-of>
+          <item> go to next page </item>
+          <item> next page </item>
+          <item> next </item>
+          <item> swipe left </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>PREVIOUS PAGE</tag>
+        <one-of>
+          <item> go to previous page </item>
+          <item> go back </item>
+          <item> previous page </item>
+          <item> previous </item>
+          <item> swipe right </item>
+        </one-of>
+      </item>
+      <item>
         <tag>EXIT_COMMANDS</tag>
         <one-of>
           <item>shut down</item>
           <item>exit</item>
+          <item> quit </item>
           <item>close the application</item>
           <item>exit the application</item>
           <item>quit the application</item>

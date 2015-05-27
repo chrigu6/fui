@@ -42,6 +42,7 @@ namespace KinectMouse
         private const double ConfidenceThreshold = 0.8;
         public Form1 Form1;
         public TextBox textbox1;
+        public float actualZoomPercent = 150;
 
         private KinectInterface()
         {
@@ -336,7 +337,7 @@ namespace KinectMouse
             switch (e.Result.Semantics.Value.ToString())
             {
                 case "NEW SEARCH":
-                    semantic = "Ok. Let's start a new search";
+                    semantic = "Ok. Let's start a new search.";
                     t1.Text = "";
                     t2.Text = "Say \"Search\" when you are ready.";
                     // set the focus on textBox1
@@ -344,7 +345,7 @@ namespace KinectMouse
                     break;
 
                 case "SEARCH CONTENT":
-                    semantic = "Say 'search' when you are ready";
+                    semantic = "Say your keywords, then say \"search\" when you are ready.";
 
                     t1.Text = e.Result.Text;
 
@@ -358,24 +359,12 @@ namespace KinectMouse
                     break;
 
                 case "SEARCH":
-                    this.form.ActiveControl = Form1;
-                    semantic = "Here are the results for the keyword: " + t1.Text;
+                    form.ActiveControl = Form1;
+                    semantic = "Here are the search results for the word \"" + t1.Text +"\".";
                     form.searchMethod();
                     t2.Text = (semantic);
 
                     break;
-                case "OPEN":
-                    semantic = "I will open it.";
-                    t2.Text = (semantic);
-
-
-                    break;
-                case "CLOSE":
-                    semantic = "I have closed this document.";
-                    t2.Text = (semantic);
-
-                    break;
-
                 case "BOOKMARK":
                     form.bookmark();
                     semantic = "I sucessfuly bookmarked this document";
@@ -385,16 +374,81 @@ namespace KinectMouse
 
                 case "UNBOOKMARK":
                     form.deleteBookmark();
-                    semantic = "I removed this document from your bookmarks";
+                    semantic = "I removed this document from your bookmarks.";
                     t2.Text = (semantic);
 
                     break;
+
+                case "SHOW BOOKMARKS":
+                    form.showBookmarks();
+                    semantic = "Here are your bookmarks.";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "ZOOM":
+                    form.zoom(actualZoomPercent+15);
+                    actualZoomPercent = actualZoomPercent + 15;
+                    semantic = "Zoomed in.";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "UNZOOM":
+                    form.zoom(actualZoomPercent-15);
+                    actualZoomPercent = actualZoomPercent - 15;
+                    semantic = "Zoomed out.";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "HIGHLIGHT WORD":
+                    //form.highlightText();
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    SendKeys.Send("^C");
+                    //string s = Clipboard.GetText();
+
+                    //t1.Text = s;
+
+                    semantic = "Done. You can now say \"Search highlighted word\".";
+                    t2.Text = (semantic); 
+
+                    break;
+                                
+                case "SEARCH HIGHLIGHTED":
+                    t1.Text = Clipboard.GetText();
+                    form.searchHighlightedWord();
+
+
+                    semantic = "Here are the search results for the highlighted word.";
+                    t2.Text = (semantic); 
+
+                    break;
+
 
                 case "SELECTION":
-                    semantic = "You talk about a document, you said: " + e.Result.Text;
+                    semantic = "You talk about a document, you said: " + e.Result.Text + ".";
                     t2.Text = (semantic);
 
                     break;
+
+                case "PREVIOUS PAGE":
+                    form.swipeLeft();
+                    semantic = "Previous page displayed.";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "NEXT PAGE":
+                    form.swipeRight();
+                    semantic = "Next page displayed.";
+                    t2.Text = (semantic);
+
+                    break;
+
                 case "EXIT_COMMANDS":
                     semantic = "Goodbye !";
                     t2.Text = (semantic);
