@@ -339,13 +339,13 @@ namespace KinectMouse
                 case "NEW SEARCH":
                     semantic = "Ok. Let's start a new search.";
                     t1.Text = "";
-                    t2.Text = "Say your keyword, then say \"search\" when you are ready.";
+                    t2.Text = "Say your keyword, then say \"Search\" when you are ready.";
                     // set the focus on textBox1
                     this.form.ActiveControl = t1;
                     break;
 
                 case "SEARCH CONTENT":
-                    semantic = "Say your keyword, then say \"search\" when you are ready.";
+                    semantic = "Say your keyword, then say \"Search\" when you are ready.";
 
                     t1.Text = e.Result.Text;
 
@@ -368,7 +368,7 @@ namespace KinectMouse
                     break;
                 case "BOOKMARK":
                     form.bookmark();
-                    semantic = "I sucessfuly bookmarked this document";
+                    semantic = "I sucessfuly bookmarked this book.";
                     t2.Text = (semantic);
 
                     break;
@@ -390,7 +390,7 @@ namespace KinectMouse
                 case "ZOOM":
                     form.zoom(actualZoomPercent+15);
                     actualZoomPercent = actualZoomPercent + 15;
-                    semantic = "Zoomed in.";
+                    semantic = "Text zoomed in.";
                     t2.Text = (semantic);
 
                     break;
@@ -398,7 +398,7 @@ namespace KinectMouse
                 case "UNZOOM":
                     form.zoom(actualZoomPercent-15);
                     actualZoomPercent = actualZoomPercent - 15;
-                    semantic = "Zoomed out.";
+                    semantic = "Text zoomed out.";
                     t2.Text = (semantic);
 
                     break;
@@ -464,24 +464,26 @@ namespace KinectMouse
 
                     break;
 
-                case "SELECTION":
-                    semantic = "You talk about a document, you said: " + e.Result.Text + ".";
-                    t2.Text = (semantic);
-
-                    break;
-
                 case "PREVIOUS PAGE":
                     form.swipeLeft();
-                    semantic = "Previous page displayed.";
+                    semantic = "You went to the previous page.";
                     t2.Text = (semantic);
 
                     break;
 
                 case "NEXT PAGE":
                     form.swipeRight();
-                    semantic = "Next page displayed.";
+                    semantic = "You went to the next page.";
                     t2.Text = (semantic);
 
+                    break;
+
+                case "HOME":
+                    t1.Text = "";
+                    form.searchMethod();
+
+                    semantic = "Here is your library. Say \"New search\" to start a new search.";
+                    t2.Text = semantic;
                     break;
 
                 case "EXIT_COMMANDS":

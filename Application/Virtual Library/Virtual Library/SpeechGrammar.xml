@@ -177,6 +177,14 @@
           <item> swipe right </item>
         </one-of>
       </item>
+            <item>
+        <tag>HOME</tag>
+        <one-of>
+          <item> home </item>
+          <item> main menu </item>
+          <item> show the library </item>
+        </one-of>
+      </item>
       <item>
         <tag>EXIT_COMMANDS</tag>
         <one-of>
