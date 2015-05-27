@@ -409,6 +409,8 @@ namespace KinectMouse
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                     SendKeys.Send("^C");
+                    SendKeys.Flush();
+
                     //string s = Clipboard.GetText();
 
                     //t1.Text = s;
@@ -428,6 +430,40 @@ namespace KinectMouse
 
                     break;
 
+                case "SEARCH IN PDF":
+
+                    
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+
+                    
+                    SendKeys.Send("^C");
+                    SendKeys.Flush();
+
+                    SendKeys.Send("^f");
+                    SendKeys.Flush();
+                    SendKeys.Send(Clipboard.GetText());
+
+                    SendKeys.Flush();
+
+                    //form.findText();
+
+                    semantic = "Searching this word in the document.";
+                    t2.Text = (semantic);
+
+                    break;
+
+                case "NEXT RESULT":
+                    SendKeys.Send("^G");
+                    SendKeys.Flush();
+
+                    semantic = "Next result in this document.";
+
+                    t2.Text = (semantic);
+
+                    break;
 
                 case "SELECTION":
                     semantic = "You talk about a document, you said: " + e.Result.Text + ".";

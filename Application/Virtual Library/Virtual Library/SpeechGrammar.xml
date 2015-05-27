@@ -118,6 +118,28 @@
         </one-of>
       </item>
       <item>
+        <tag>SEARCH IN PDF</tag>
+        <one-of>
+          <item> search a keyword </item>
+          <item> search this word in the PDF </item>
+          <item> search for this word in the PDF </item>
+          <item> search for this word in the document </item>
+          <item> search in the pdf </item>
+          <item> search in this document </item>
+          <item> search in this pdf </item>
+          <item> search in this pe de ef </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>NEXT RESULT</tag>
+        <one-of>
+          <item> next result </item>
+          <item> show me the next result </item>
+          <item> show next result </item>
+          <item> show next occurence </item>
+        </one-of>
+      </item>
+      <item>
         <tag>SELECTION</tag>
         <one-of>
           <item> this </item>

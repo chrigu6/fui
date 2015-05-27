@@ -54,7 +54,7 @@ namespace Virtual_Library
 
             if (results.Count == 0)
             {
-                textBox2.Text = "Sorry. No results with the keyword " + textBox1.Text + ". Say \"New search\".";
+                textBox2.Text = "Sorry. No results with this keyword. Say \"New search\".";
             }
             foreach (Books book in results)
             {
@@ -69,7 +69,16 @@ namespace Virtual_Library
         }
 
         public void findText()
-        { 
+        {
+            SendKeys.Send("^C");
+            SendKeys.Flush();
+
+            SendKeys.Send("^f");
+            SendKeys.Flush();
+            SendKeys.Send(Clipboard.GetText());
+
+            SendKeys.Flush();
+
 
         }
 
