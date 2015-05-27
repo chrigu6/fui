@@ -68,6 +68,12 @@ namespace Virtual_Library
 
         }
 
+        public void findText()
+        { 
+
+        }
+
+
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -230,11 +236,11 @@ namespace Virtual_Library
         {
             int X = Cursor.Position.X;
             int Y = Cursor.Position.Y;
-            //mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
-            //mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
-            //mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
-            //mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
-            axAcroPDF1.setCurrentHighlight(X - 500, Y - 600, 50, 20);
+            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTDOWN, X, Y);
+            mouse_event(MOUSEEVENTF_LEFTUP, X, Y);
+            //axAcroPDF1.setCurrentHighlight(X - 500, Y - 600, 50, 20);
         }
 
         public void searchHighlightedWord()
