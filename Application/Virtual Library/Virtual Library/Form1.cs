@@ -68,20 +68,6 @@ namespace Virtual_Library
 
         }
 
-        public void findText()
-        {
-            SendKeys.Send("^C");
-            SendKeys.Flush();
-
-            SendKeys.Send("^f");
-            SendKeys.Flush();
-            SendKeys.Send(Clipboard.GetText());
-
-            SendKeys.Flush();
-
-
-        }
-
 
         private void button1_KeyDown(object sender, KeyEventArgs e)
         {

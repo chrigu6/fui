@@ -130,6 +130,15 @@
           <item> search in this pe de ef </item>
         </one-of>
       </item>
+            <item>
+        <tag>EXIT PDF SEARCH</tag>
+        <one-of>
+          <item> exit search </item>
+          <item> exit pdf search </item>
+          <item> exit document search </item>
+          <item> exit the search </item>
+        </one-of>
+      </item>
       <item>
         <tag>NEXT RESULT</tag>
         <one-of>

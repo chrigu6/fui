@@ -339,17 +339,18 @@ namespace KinectMouse
                 case "NEW SEARCH":
                     semantic = "Ok. Let's start a new search.";
                     t1.Text = "";
-                    t2.Text = "Say \"Search\" when you are ready.";
+                    t2.Text = "Say your keyword, then say \"search\" when you are ready.";
                     // set the focus on textBox1
                     this.form.ActiveControl = t1;
                     break;
 
                 case "SEARCH CONTENT":
-                    semantic = "Say your keywords, then say \"search\" when you are ready.";
+                    semantic = "Say your keyword, then say \"search\" when you are ready.";
 
                     t1.Text = e.Result.Text;
 
                     break;
+
                 case "CLICK":
                     semantic = "Click" + e.Result.Text;
                     //MouseOperations.SetCursorPosition();
@@ -438,30 +439,28 @@ namespace KinectMouse
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 
-                    
                     SendKeys.Send("^C");
                     SendKeys.Flush();
 
-                    SendKeys.Send("^f");
-                    SendKeys.Flush();
-                    SendKeys.Send(Clipboard.GetText());
+                    form.searchDocument(Clipboard.GetText());
 
-                    SendKeys.Flush();
-
-                    //form.findText();
-
-                    semantic = "Searching this word in the document.";
+                    semantic = "I searched this word in the document. Say \"Exit search\" when you are done.";
                     t2.Text = (semantic);
 
                     break;
 
                 case "NEXT RESULT":
-                    SendKeys.Send("^G");
-                    SendKeys.Flush();
 
-                    semantic = "Next result in this document.";
+                    form.searchNextOccurence();
+
+                    semantic = "Next result in this document. Say \"Exit search\" when you are done.";
 
                     t2.Text = (semantic);
+
+                    break;
+
+                case "EXIT PDF SEARCH":
+                    form.exitSearchBox();
 
                     break;
 
