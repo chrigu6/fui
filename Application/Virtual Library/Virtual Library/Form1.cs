@@ -28,6 +28,7 @@ namespace Virtual_Library
         {
             InitializeComponent();
             InitializeLibrary();
+            Clipboard.Clear();
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
