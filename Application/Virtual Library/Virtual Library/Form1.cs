@@ -165,8 +165,6 @@ namespace Virtual_Library
         public void searchDocument(String searchTerm)
         {
             this.axAcroPDF1.Select();
-            SendKeys.Send("^f");
-            SendKeys.Flush();
             SendKeys.Send(searchTerm);
             SendKeys.Flush();
         }
@@ -174,7 +172,7 @@ namespace Virtual_Library
         public void searchNextOccurence()
         {
             this.axAcroPDF1.Select();
-            SendKeys.Send("^f");
+            SendKeys.Send("^(f)");
             SendKeys.Send("{ENTER}");
         }
 

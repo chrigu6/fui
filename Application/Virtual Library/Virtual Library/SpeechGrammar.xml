@@ -84,6 +84,10 @@
           <item> zoom </item>
           <item> zoom in </item>
           <item> zoom out </item>
+          <item> soom out </item>
+          <item> soom in </item>
+          <item> ssoom in </item>
+          <item> ssoom out </item>
           <item> make it bigger </item>
           <item> make the text bigger </item>
           <item> enlarge </item>
@@ -121,6 +125,8 @@
         <tag>SEARCH IN PDF</tag>
         <one-of>
           <item> search a keyword </item>
+          <item> search in the document </item>
+          <item> search a word </item>
           <item> search this word in the PDF </item>
           <item> search for this word in the PDF </item>
           <item> search for this word in the document </item>
@@ -143,6 +149,10 @@
         <tag>NEXT RESULT</tag>
         <one-of>
           <item> next result </item>
+          <item> next occurence </item>
+          <item> show next occurency </item>
+          <item> show the next occurence </item>
+          <item> show next </item>
           <item> show me the next result </item>
           <item> show next result </item>
           <item> show next occurence </item>

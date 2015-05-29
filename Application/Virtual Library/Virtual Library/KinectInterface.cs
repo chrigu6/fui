@@ -172,7 +172,6 @@ namespace KinectMouse
                     {
                         leftHandTracked = 0;
                         leftHandUnTracked = 0;
-                        Console.WriteLine("reset");
                     }
 
                 }
@@ -352,6 +351,17 @@ namespace KinectMouse
 
                     t1.Text = e.Result.Text;
 
+                    SendKeys.Send("^(a)");
+                    form.searchDocument(e.Result.Text);
+
+                    SendKeys.Flush();
+
+
+                    
+                    SendKeys.Send("{ENTER}");
+
+
+
                     break;
 
                 case "CLICK":
@@ -412,12 +422,9 @@ namespace KinectMouse
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    SendKeys.Send("^C");
+                    SendKeys.Send("^(c)");
                     SendKeys.Flush();
 
-                    //string s = Clipboard.GetText();
-
-                    //t1.Text = s;
 
                     semantic = "Done. You can now say \"Search highlighted word\".";
                     t2.Text = (semantic); 
@@ -437,20 +444,25 @@ namespace KinectMouse
                 case "SEARCH IN PDF":
 
                     
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 
-                    SendKeys.Send("^C");
+                    //SendKeys.Send("^C");
+
+                    SendKeys.Send("^(f)");
                     SendKeys.Flush();
 
-                    form.searchDocument(Clipboard.GetText());
+                    //form.searchDocument(Clipboard.GetText());
+
+
 
                     semantic = "I searched this word in the document. Say \"Exit search\" when you are done.";
                     t2.Text = (semantic);
 
                     break;
+
 
                 case "NEXT RESULT":
 

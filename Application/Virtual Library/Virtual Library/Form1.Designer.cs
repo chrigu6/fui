@@ -102,10 +102,10 @@
             // axAcroPDF1
             // 
             this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(461, 39);
+            this.axAcroPDF1.Location = new System.Drawing.Point(481, 48);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(795, 1147);
+            this.axAcroPDF1.Size = new System.Drawing.Size(689, 578);
             this.axAcroPDF1.TabIndex = 7;
             // 
             // deleteBookmarkButton
@@ -170,7 +170,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.leftHandBox);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 950);
+            this.groupBox1.Location = new System.Drawing.Point(12, 400);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 15;
@@ -181,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 1062);
+            this.ClientSize = new System.Drawing.Size(1182, 638);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.activeBookLabel);
             this.Controls.Add(this.deleteBookmarkButton);
